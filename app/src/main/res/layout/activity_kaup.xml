@@ -44,4 +44,9 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/resultCalc"/>
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/returnMain"
+        android:text="메인으로"/>
 </LinearLayout>
