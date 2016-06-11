@@ -20,6 +20,7 @@ import android.os.Build;
 import android.os.Bundle;
 import android.provider.ContactsContract;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.KeyEvent;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -67,7 +68,13 @@ public class Login2Activity extends Activity implements View.OnClickListener{
         member.setId(id);
         member.setPw(pw);
         member = dao.login(member);
-        textResult.setText("로그인 결과 : "+member.getName()+" 환영합니다");
+        Log.i("DB 다녀온 결과 ID ",member.getId());
+        if (member == null){
+            textResult.setText("로그인 결과 : 실패");
+        }else{
+            textResult.setText("로그인 결과 : "+member.getName()+" 환영합니다");
+        }
+
     }
 }
 
