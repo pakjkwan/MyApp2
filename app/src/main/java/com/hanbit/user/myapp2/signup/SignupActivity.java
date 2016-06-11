@@ -18,6 +18,7 @@ import java.lang.reflect.Member;
 public class SignupActivity extends Activity implements View.OnClickListener{
     EditText etID,etPW,etName,etEmail;
     TextView textResult;
+   // MemberService service;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -37,7 +38,7 @@ public class SignupActivity extends Activity implements View.OnClickListener{
         String pw = etPW.getText().toString();
         String email = etEmail.getText().toString();
         MemberBean member = new MemberBean();
-        MemberService service = new MemberServiceImpl();
+    //    MemberServiceImpl service = new MemberServiceImpl();
         MemberDAO dao = new MemberDAO(this.getApplicationContext());
         member.setId(id);
         member.setPw(pw);
