@@ -13,6 +13,7 @@ import com.hanbit.user.myapp2.kaup.KaupActivity;
 import com.hanbit.user.myapp2.login.Login2Activity;
 import com.hanbit.user.myapp2.movie.MovieActivity;
 import com.hanbit.user.myapp2.signup.SignupActivity;
+import com.hanbit.user.myapp2.spinner.SpinnerActivity;
 
 public class MainActivity extends Activity implements View.OnClickListener {
     /**
@@ -31,6 +32,7 @@ public class MainActivity extends Activity implements View.OnClickListener {
         ((Button) findViewById(R.id.btSignup)).setOnClickListener(this);
         ((Button) findViewById(R.id.btGroup)).setOnClickListener(this);
         ((Button) findViewById(R.id.btMovie)).setOnClickListener(this);
+        ((Button) findViewById(R.id.btSpinner)).setOnClickListener(this);
         // ATTENTION: This was auto-generated to implement the App Indexing API.
         // See https://g.co/AppIndexing/AndroidStudio for more information.
     }
@@ -55,6 +57,9 @@ public class MainActivity extends Activity implements View.OnClickListener {
                 break;
             case R.id.btMovie:
                 startActivity(new Intent(this, MovieActivity.class));
+                break;
+            case R.id.btSpinner:
+                startActivity(new Intent(this, SpinnerActivity.class));
                 break;
         }
     }
