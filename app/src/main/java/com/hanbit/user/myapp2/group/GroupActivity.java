@@ -34,6 +34,8 @@ public class GroupActivity extends Activity implements View.OnClickListener{
 
     @Override
     public void onClick(View v) {
+        Cursor cursor = null;
+        String id=null,name=null,num=null;
         switch(v.getId()){
             case R.id.btInit : // 초기화버튼
                 db = groupHelper.getWritableDatabase();
@@ -47,23 +49,52 @@ public class GroupActivity extends Activity implements View.OnClickListener{
                 Toast.makeText(getApplicationContext(),"입력성공", Toast.LENGTH_LONG).show();
                 break;
             case R.id.btFind : // 조회
-
+                db = groupHelper.getReadableDatabase();
+                cursor = db.rawQuery("SELECT *FROM group WHERE _id = 1;",null);
+                id = String.valueOf(cursor.getInt(0));
+                name = cursor.getString(1);
+                num = String.valueOf(cursor.getInt(2));
+                etResult.setText("NO."+id);
+                etResult.setText("그룹명 : "+name);
+                etResult.setText("멤버수 : "+num);
                 break;
             case R.id.btUpdate : // 수정
-
+                db = groupHelper.getWritableDatabase();
+                db.execSQL("UPDATE TABLE group SET num = 30 WHERE _id = 1;");
+                etResult.setText("수정 완료");
+                db.close();
                 break;
             case R.id.btDelete : // 삭제
-
+                db = groupHelper.getWritableDatabase();
+                db.execSQL("DELETE FROM group WHERE _id = 1");
+                etResult.setText("삭제 완료");
+                db.close();
                 break;
-            case R.id.btList : // 삭제
+            case R.id.btList : // 목록
                 db = groupHelper.getReadableDatabase();
-                Cursor cursor = db.rawQuery("SELECT * FROM group;",null);
-                String name = "그룹이름"+"\r\n"+"-------------"+"\r\n";
-                String num = "멤버수"+"\r\n"+"--------------"+"\r\n";
+                cursor = db.rawQuery("SELECT * FROM group;",null);
+                id = "NO"+"\r\n"+"-------------"+"\r\n";
+                name = "그룹이름"+"\r\n"+"-------------"+"\r\n";
+                num = "멤버수"+"\r\n"+"--------------"+"\r\n";
+                while (cursor.moveToNext()){
+                    id += cursor.getInt(0) + "\r\n";
+                    name += cursor.getString(1) + "\r\n";
+                    num += cursor.getInt(2) + "\r\n";
+                }
 
+                etResult.setText(id);
+                etResult.setText(name);
+                etResult.setText(num);
+                cursor.close();
+                db.close();
                 break;
             case R.id.btCount : // 삭제
-
+                db = groupHelper.getReadableDatabase();
+                cursor = db.rawQuery("SELECT * FROM group;",null);
+                int count = cursor.getCount();
+                cursor.close();
+                etResult.setText("DB에 저장된 값의 갯수 : "+ count);
+                db.close();
                 break;
         }
 
