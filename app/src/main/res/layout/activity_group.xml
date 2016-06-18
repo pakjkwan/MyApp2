@@ -16,7 +16,7 @@
         <EditText
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/etID"/>
+            android:id="@+id/etName"/>
     </LinearLayout>
     <LinearLayout
     android:layout_width="match_parent"
@@ -30,14 +30,34 @@
     <EditText
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/etPW"/>
+        android:id="@+id/etNum"/>
 </LinearLayout>
-    <Button
+    <LinearLayout
         android:layout_width="match_parent"
+        android:orientation="horizontal"
         android:layout_height="wrap_content"
-        android:text="초기화"
-        android:textSize="30dp"
-        android:id="@+id/btInit"/>
+        android:gravity="center_horizontal">
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="초기화"
+            android:textSize="30dp"
+            android:id="@+id/btInit"/>
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="리스트"
+            android:textSize="30dp"
+            android:id="@+id/btList"/>
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="그룹수"
+            android:textSize="30dp"
+            android:id="@+id/btCount"/>
+
+    </LinearLayout>
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -54,7 +74,7 @@
             android:layout_height="wrap_content"
             android:text="조회"
             android:textSize="30dp"
-            android:id="@+id/btSignup"/>
+            android:id="@+id/btFind"/>
         <Button
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
