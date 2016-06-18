@@ -24,9 +24,14 @@
         android:text="회원가입"
         android:id="@+id/btSignup"/>
     <Button
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:text="걸그룹"
+    android:id="@+id/btGroup"/>
+    <Button
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="걸그룹"
-        android:id="@+id/btGroup"/>
+        android:text="영화"
+        android:id="@+id/btMovie"/>
 </LinearLayout>
 
