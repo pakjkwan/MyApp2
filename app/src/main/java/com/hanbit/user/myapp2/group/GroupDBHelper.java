@@ -14,12 +14,12 @@ public class GroupDBHelper extends SQLiteOpenHelper {
 
     @Override
     public void onCreate(SQLiteDatabase db) {
-        db.execSQL("CREATE TABLE group(_id INTEGER PRIMARY KEY, name TEXT, num INTEGER);");
+        db.execSQL("CREATE TABLE girl_group(_id INTEGER PRIMARY KEY, name TEXT, num INTEGER);");
     }
 
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
-        db.execSQL("DROP TABLE IF EXISTS group");
+        db.execSQL("DROP TABLE IF EXISTS girl_group");
         this.onCreate(db);
     }
 }
