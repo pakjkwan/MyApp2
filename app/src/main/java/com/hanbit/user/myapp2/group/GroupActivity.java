@@ -15,7 +15,7 @@ import com.hanbit.user.myapp2.R;
 public class GroupActivity extends Activity implements View.OnClickListener{
     GroupDBHelper  groupHelper = new GroupDBHelper(GroupActivity.this);
     public SQLiteDatabase db;
-    EditText etName,etNum,etResult;
+    EditText etName,etNum,etResult,etID;
     Cursor cursor;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -24,6 +24,7 @@ public class GroupActivity extends Activity implements View.OnClickListener{
         etName = (EditText) findViewById(R.id.etName);
         etNum = (EditText) findViewById(R.id.etNum);
         etResult = (EditText) findViewById(R.id.etResult);
+        etID = (EditText) findViewById(R.id.etID);
         ((Button)findViewById(R.id.btInit)).setOnClickListener(this);
         ((Button)findViewById(R.id.btInsert)).setOnClickListener(this);
         ((Button)findViewById(R.id.btFind)).setOnClickListener(this);
@@ -50,7 +51,7 @@ public class GroupActivity extends Activity implements View.OnClickListener{
                 break;
             case R.id.btFind : // 조회
                 db = groupHelper.getReadableDatabase();
-                cursor = db.rawQuery("SELECT * FROM girl_group WHERE name = '"+etName.getText()+"';",null);
+                cursor = db.rawQuery("SELECT * FROM girl_group WHERE _id = "+etID.getText()+";",null);
                 while(cursor.moveToNext()){
                     id = String.valueOf(cursor.getInt(0));
                     name = cursor.getString(1);
@@ -66,7 +67,7 @@ public class GroupActivity extends Activity implements View.OnClickListener{
                 break;
             case R.id.btDelete : // 삭제
                 db = groupHelper.getWritableDatabase();
-                db.execSQL("DELETE FROM girl_group WHERE _id = "+etNum.getText());
+                db.execSQL("DELETE FROM girl_group WHERE _id = "+etID.getText());
                 etResult.setText("삭제 완료");
                 db.close();
                 break;
@@ -85,7 +86,7 @@ public class GroupActivity extends Activity implements View.OnClickListener{
                 cursor.close();
                 db.close();
                 break;
-            case R.id.btCount : // 삭제
+            case R.id.btCount : // 갯수
                 db = groupHelper.getReadableDatabase();
                 cursor = db.rawQuery("SELECT * FROM girl_group;",null);
                 int count = cursor.getCount();
