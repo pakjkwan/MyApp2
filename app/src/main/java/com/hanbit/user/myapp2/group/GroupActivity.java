@@ -44,13 +44,13 @@ public class GroupActivity extends Activity implements View.OnClickListener{
                 break;
             case R.id.btInsert : // 등록
                 db = groupHelper.getWritableDatabase();
-                db.execSQL("INSERT INTO girl_group(name,num) VALUES('IOI',20)");
+                db.execSQL("INSERT INTO girl_group(name,num) VALUES('"+etName.getText()+"',"+etNum.getText()+")");
                 db.close();
                 Toast.makeText(getApplicationContext(),"입력성공", Toast.LENGTH_LONG).show();
                 break;
             case R.id.btFind : // 조회
                 db = groupHelper.getReadableDatabase();
-                cursor = db.rawQuery("SELECT * FROM girl_group WHERE _id = 1;",null);
+                cursor = db.rawQuery("SELECT * FROM girl_group WHERE name = '"+etName.getText()+"';",null);
                 while(cursor.moveToNext()){
                     id = String.valueOf(cursor.getInt(0));
                     name = cursor.getString(1);
@@ -60,13 +60,13 @@ public class GroupActivity extends Activity implements View.OnClickListener{
                 break;
             case R.id.btUpdate : // 수정
                 db = groupHelper.getWritableDatabase();
-                db.execSQL("UPDATE girl_group SET num = 30 WHERE _id = 1;");
+                db.execSQL("UPDATE girl_group SET num = "+etNum.getText()+" WHERE name = '"+etName.getText()+"';");
                 etResult.setText("수정 완료");
                 db.close();
                 break;
             case R.id.btDelete : // 삭제
                 db = groupHelper.getWritableDatabase();
-                db.execSQL("DELETE FROM girl_group WHERE _id = 1");
+                db.execSQL("DELETE FROM girl_group WHERE _id = "+etNum.getText());
                 etResult.setText("삭제 완료");
                 db.close();
                 break;
@@ -81,8 +81,7 @@ public class GroupActivity extends Activity implements View.OnClickListener{
                     num += cursor.getInt(2) + "\r\n";
                 }
 
-                etResult.setText(name);
-                etResult.setText(num);
+                etResult.setText(name+num);
                 cursor.close();
                 db.close();
                 break;
